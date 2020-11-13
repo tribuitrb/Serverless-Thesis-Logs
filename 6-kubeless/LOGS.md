@@ -73,3 +73,15 @@ Remove kubeless
 ```
 kubectl delete -f https://github.com/kubeless/kubeless/releases/download/$RELEASE/kubeless-$RELEASE.yaml
 ```
+
+```
+mkdir hello-python && cd $_
+
+touch hello-python.py
+
+kubeless function deploy hello-python --runtime python2.7 \
+                                --from-file hello-python.py \
+                                --handler hello-python.hello
+
+kubeless function call hello-python
+```

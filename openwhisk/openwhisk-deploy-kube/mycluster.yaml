@@ -1,0 +1,37 @@
+# whisk:
+#   ingress:
+#     type: NodePort
+#     apiHostName: 10.102.196.109
+#     apiHostPort: 31001
+
+# nginx:
+#   httpsNodePort: 31001
+
+# k8s:
+#   domain: kubernetes.default.svc.cluster.local
+
+# k8s:
+#   persistence:
+#     enabled: false
+
+# invoker:
+#   containerFactory:
+#     impl: "kubernetes"
+
+whisk:
+  ingress:
+    type: NodePort
+    apiHostName: 10.102.196.109
+    apiHostPort: 31001
+k8s:
+  persistence:
+    enabled: false
+nginx:
+  httpsNodePort: 31001
+invoker:
+  containerFactory:
+    impl: "kubernetes"
+metrics:
+  prometheusEnabled: true
+metrics:
+  userMetricsEnabled: true

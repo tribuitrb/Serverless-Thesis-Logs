@@ -203,6 +203,10 @@ nginx:
 ```
 helm install owdev helm/openwhisk -n openwhisk --create-namespace -f mycluster.yaml
 
+*helm upgrade owdev ./helm/openwhisk -n openwhisk -f mycluster.yaml*
+*helm uninstall owdev --repository-config mycluster.yaml*
+
+
 wsk property set --apihost <whisk.ingress.apiHostName>:<whisk.ingress.apiHostPort>
 wsk property set --auth 23bc46b1-71f6-4ed5-8c54-816aa4f8c502:123zO3xZCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP
 
@@ -278,3 +282,28 @@ wsk -i action create hello hello.js
 wsk -i action invoke hello --result
 wsk -i action invoke hello --result --param name Ethan
 ```
+
+```
+mkdir hello-python && cd $_
+
+nano hello-python.py
+
+wsk -i action create helloPython hello-python.py
+
+// https://github.com/apache/openwhisk/blob/master/docs/actions-python.md
+
+wsk -i action invoke helloPython --result  --param name World
+
+```
+
+# Error
+
+```
+kubectl -n openwhisk port-forward service/owdev-nginx 443 &
+
+
+```
+
+# Ref
+
+https://github.com/apache/openwhisk/blob/master/docs/actions.md
